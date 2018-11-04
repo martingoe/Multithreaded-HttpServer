@@ -19,55 +19,6 @@ public class Request {
     private HashMap<String, String> responseHeaders;
 
     /**
-     * Returns the protocol
-     * @return protocol used by the request
-     */
-    public String getProtocol() {
-        return protocol;
-    }
-
-    /**
-     * Returns the requestHeaders
-     * @return requestHeaders sent by the request
-     */
-    public HashMap<String, String> getRequestHeaders() {
-        return requestHeaders;
-    }
-
-    /**
-     * Returns the path
-     * @return path used by the request
-     */
-    public String getPath() {
-        return path;
-    }
-
-    /**
-     * Returns the query
-     * @return query used by the request as a {@link String}
-     */
-    public String getQueryAsString() {
-        return query;
-    }
-
-    /**
-     * Returns the query
-     * @return query used by the request as a {@link HashMap}
-     */
-    public HashMap<String, String> getQueryAsMap() {
-        HashMap<String, String> hashMap = new HashMap<>();
-
-        String[] arguments = query.split("&");
-
-        for (String argument : arguments) {
-            String[] keyAndValue = argument.split("=");
-            hashMap.put(keyAndValue[0], keyAndValue[1]);
-        }
-        return hashMap;
-    }
-
-
-    /**
      * class Constructor
      * Make the information given by the client/request usable
      *
@@ -92,9 +43,62 @@ public class Request {
     }
 
     /**
+     * Returns the protocol
+     *
+     * @return protocol used by the request
+     */
+    public String getProtocol() {
+        return protocol;
+    }
+
+    /**
+     * Returns the requestHeaders
+     *
+     * @return requestHeaders sent by the request
+     */
+    public HashMap<String, String> getRequestHeaders() {
+        return requestHeaders;
+    }
+
+    /**
+     * Returns the path
+     *
+     * @return path used by the request
+     */
+    public String getPath() {
+        return path;
+    }
+
+    /**
+     * Returns the query
+     *
+     * @return query used by the request as a {@link String}
+     */
+    public String getQueryAsString() {
+        return query;
+    }
+
+    /**
+     * Returns the query
+     *
+     * @return query used by the request as a {@link HashMap}
+     */
+    public HashMap<String, String> getQueryAsMap() {
+        HashMap<String, String> hashMap = new HashMap<>();
+
+        String[] arguments = query.split("&");
+
+        for (String argument : arguments) {
+            String[] keyAndValue = argument.split("=");
+            hashMap.put(keyAndValue[0], keyAndValue[1]);
+        }
+        return hashMap;
+    }
+
+    /**
      * Adds a context to {@link #responseHeaders}
      *
-     * @param type the type of the header e.g. 'Content-Type'
+     * @param type  the type of the header e.g. 'Content-Type'
      * @param value the value of the header added
      */
     void addResponseHeader(String type, String value) {
@@ -104,7 +108,7 @@ public class Request {
     /**
      * Sends a response to the client
      *
-     * @param text the message sent
+     * @param text  the message sent
      * @param rCode the response Code used
      */
     void sendResponse(String text, int rCode) {

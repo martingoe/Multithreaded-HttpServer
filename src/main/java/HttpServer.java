@@ -11,6 +11,16 @@ public class HttpServer {
 
 
     /**
+     * @param port the port used for the webserver
+     * @throws IOException because initializing a {@link ServerSocket} does
+     */
+    public HttpServer(int port) throws IOException {
+        serverSocket = new ServerSocket(port);
+
+        contexts = new HashMap<>();
+    }
+
+    /**
      * Stops the loop started in {@link #start()}
      */
     public void stop() {
@@ -21,7 +31,6 @@ public class HttpServer {
      * Starts a loop that accepts any requests coming in and sending it to a {@link Handler} if necessary
      *
      * @throws IOException because serverSocket.accept() can throw an IOException
-     *
      */
     public void start() throws IOException {
         acceptRequests = true;
@@ -42,21 +51,11 @@ public class HttpServer {
 
     /**
      * Adds a context to the context HashMap
-     * @param path the path to a context
+     *
+     * @param path    the path to a context
      * @param handler the handler handling the request
      */
     void addContext(String path, Handler handler) {
         contexts.put(path, handler);
-    }
-
-    /**
-     *
-     * @param port the port used for the webserver
-     * @throws IOException because initializing a {@link ServerSocket} does
-     */
-    public HttpServer(int port) throws IOException {
-        serverSocket = new ServerSocket(port);
-
-        contexts = new HashMap<>();
     }
 }

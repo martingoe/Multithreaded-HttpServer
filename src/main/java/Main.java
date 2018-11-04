@@ -14,6 +14,9 @@ public class Main {
         }
     }
 
+    public static void main(String[] args) {
+        new Main();
+    }
 
     public class TestHandler extends Thread implements Handler {
 
@@ -22,14 +25,9 @@ public class Main {
             HashMap<String, String> query = request.getQueryAsMap();
 
 
-
             request.addResponseHeader("Access-Allow-Content-Origin", "*");
 
             request.sendResponse(query.get("test"), 200);
         }
-    }
-
-    public static void main(String[] args) {
-        new Main();
     }
 }
