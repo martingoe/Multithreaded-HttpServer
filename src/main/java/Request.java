@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -15,7 +16,7 @@ public class Request {
 
     private OutputStream outputStream;
 
-    private HashMap<String, String> requestHeaders;
+    private Map<String, String> requestHeaders;
     private HashMap<String, String> responseHeaders;
 
     /**
@@ -35,8 +36,7 @@ public class Request {
 
         responseHeaders = new HashMap<>();
 
-        requestHeaders = (HashMap<String, String>) Arrays.stream(str.split("\n")).map(s -> s.split(":"))
-                .collect(Collectors.toMap(e -> e[0], e -> (e[1])));
+        requestHeaders = Arrays.stream(str.split("\n")).map(s -> s.split(":")).collect(Collectors.toMap(e -> e[0], e -> (e[1])));
 
 
         this.outputStream = client.getOutputStream();
@@ -56,7 +56,7 @@ public class Request {
      *
      * @return requestHeaders sent by the request
      */
-    public HashMap<String, String> getRequestHeaders() {
+    public Map<String, String> getRequestHeaders() {
         return requestHeaders;
     }
 
