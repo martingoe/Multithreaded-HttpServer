@@ -1,3 +1,0 @@
-# HttpServer
-
-Simple multithreaded webserver
